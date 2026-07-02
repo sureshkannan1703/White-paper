@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Paper — Technology partner for businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --panel:#FAFAFA;
+    --line:#E4E4E4;
+    --ink:#0A0A0A;
+    --gray:#6E6E6E;
+    --red:#FF3B30;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.55; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  section{ padding:0; }
+  button{ font-family:inherit; cursor:pointer; }
+  .dot{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--red); }
+
+  /* ---- NAV ---- */
+  nav{ border-bottom:1px solid var(--line); }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; }
+  .logo{ font-family:'JetBrains Mono',monospace; font-weight:600; font-size:15px; display:flex; align-items:center; gap:9px; letter-spacing:0.01em; }
+  .nav-link{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--gray); border:1px solid var(--line); padding:9px 16px; border-radius:2px; }
+  .nav-link:hover{ border-color:var(--ink); color:var(--ink); }
+
+  /* ---- HERO ---- */
+  .hero{ border-bottom:1px solid var(--line); }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; }
+  .hero-left{ padding:96px 56px 96px 0; border-right:1px solid var(--line); }
+  .hero-left .index{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray); margin-bottom:28px; display:flex; align-items:center; gap:8px; }
+  .hero-left h1{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:42px; line-height:1.22;
+    letter-spacing:-0.01em; max-width:520px;
+  }
+  .hero-left .btn-row{ margin-top:40px; display:flex; gap:12px; }
+  .btn-primary{
+    background:var(--ink); color:#fff; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px;
+    padding:14px 22px; border-radius:2px; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary:hover{ background:#000; }
+  .btn-primary .dot{ background:var(--red); }
+
+  /* ---- FORM PANEL (occupies the space where the diagram used to sit) ---- */
+  .hero-right{ padding:56px 0 56px 56px; }
+  .form-label{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray); margin-bottom:6px; display:block; }
+  .form-title{ font-size:19px; font-weight:600; margin-bottom:24px; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.04em; }
+  .field input, .field select, .field textarea{
+    width:100%; border:1px solid var(--line); border-radius:2px; padding:12px 13px; font-family:'Inter',sans-serif;
+    font-size:14px; background:var(--panel); color:var(--ink); outline:none; transition:border-color .15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--ink); background:#fff; }
+  .field textarea{ resize:vertical; min-height:62px; }
+  .submit-btn{
+    width:100%; background:var(--ink); color:#fff; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px;
+    padding:14px; border-radius:2px; border:none; display:flex; align-items:center; justify-content:center; gap:9px; margin-top:6px;
+  }
+  .submit-btn:hover{ background:#000; }
+  .submit-btn .dot{ background:var(--red); }
+  .form-status{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--gray); margin-top:10px; min-height:14px; }
+
+  /* ---- SERVICES ---- */
+  .services{ padding:0; }
+  .services-head{ padding:40px 28px 0; display:flex; align-items:baseline; justify-content:space-between; }
+  .services-head .label{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray); }
+  .services-head .count{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray); }
+  .service-list{ margin-top:24px; }
+  .service-row{
+    display:grid; grid-template-columns:70px 1fr 32px; align-items:center; gap:24px;
+    padding:28px; border-top:1px solid var(--line); transition:background .15s;
+  }
+  .service-list .service-row:last-child{ border-bottom:1px solid var(--line); }
+  .service-row:hover{ background:var(--panel); }
+  .service-row .num{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gray); }
+  .service-row .title{ font-size:17px; font-weight:600; margin-bottom:4px; }
+  .service-row .desc{ font-size:13.8px; color:var(--gray); max-width:640px; }
+  .service-row .arrow{ font-family:'JetBrains Mono',monospace; font-size:16px; color:var(--line); transition:color .15s, transform .15s; text-align:center; }
+  .service-row:hover .arrow{ color:var(--red); transform:translateX(3px); }
+
+  /* ---- FOOTER ---- */
+  footer{ border-top:1px solid var(--line); margin-top:40px; }
+  footer .wrap{ padding:40px 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  footer .f-logo{ font-family:'JetBrains Mono',monospace; font-weight:600; font-size:14px; display:flex; align-items:center; gap:8px; }
+  footer .f-tag{ font-size:13px; color:var(--gray); }
+
+  @media(max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-left{ border-right:none; border-bottom:1px solid var(--line); padding:56px 28px; }
+    .hero-right{ padding:40px 28px; }
+    .hero-left h1{ font-size:30px; }
+    .service-row{ grid-template-columns:44px 1fr 24px; padding:22px 28px; gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>White Paper</div>
+    <a href="#request" class="nav-link">Get in touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="index"><span class="dot"></span>TECHNOLOGY PARTNER</div>
+      <h1>We build technology solutions for your businesses.</h1>
+      <div class="btn-row">
+        <a href="#request" class="btn-primary"><span class="dot"></span>Request a service</a>
+      </div>
+    </div>
+    <div class="hero-right" id="request">
+      <span class="form-label">// 01 — REQUEST</span>
+      <div class="form-title">Tell us what you need</div>
+      <form id="wpForm">
+        <div class="field">
+          <label for="bizName">Business name</label>
+          <input type="text" id="bizName" required>
+        </div>
+        <div class="field">
+          <label for="ownerName">Your name</label>
+          <input type="text" id="ownerName" required>
+        </div>
+        <div class="field">
+          <label for="serviceSelect">Select a service</label>
+          <select id="serviceSelect" required>
+            <option value="" disabled selected>Choose a service</option>
+            <option value="AI Workflow Automation">AI Workflow Automation</option>
+            <option value="Virtual Menu Card">Virtual Menu Card</option>
+            <option value="Visual Storytelling Arts">Visual Storytelling Arts</option>
+            <option value="Customer Feedback Analysis">Customer Feedback Analysis</option>
+            <option value="Google Review Analysis">Google Review Analysis</option>
+            <option value="Website and Landing Page Development">Website and Landing Page Development</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="note">Note (optional)</label>
+          <textarea id="note"></textarea>
+        </div>
+        <button type="submit" class="submit-btn"><span class="dot"></span>Send via WhatsApp</button>
+        <div class="form-status" id="formStatus"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-head">
+    <span class="label">// 02 — SERVICES</span>
+    <span class="count">6 available</span>
+  </div>
+  <div class="service-list">
+
+    <div class="service-row" data-service="AI Workflow Automation">
+      <span class="num">01</span>
+      <div>
+        <div class="title">AI Workflow Automation</div>
+        <div class="desc">Automate order confirmations, reminders, and repetitive replies with AI — nothing depends on someone remembering to send it.</div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+
+    <div class="service-row" data-service="Virtual Menu Card">
+      <span class="num">02</span>
+      <div>
+        <div class="title">Virtual Menu Card</div>
+        <div class="desc">A QR-based digital menu for your café or restaurant. Update prices and items anytime — no reprinting.</div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+
+    <div class="service-row" data-service="Visual Storytelling Arts">
+      <span class="num">03</span>
+      <div>
+        <div class="title">Visual Storytelling Arts</div>
+        <div class="desc">Purposeful narrative wall art designed for your specific space — gyms, offices, cafés, or kids' rooms.</div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+
+    <div class="service-row" data-service="Customer Feedback Analysis">
+      <span class="num">04</span>
+      <div>
+        <div class="title">Customer Feedback Analysis</div>
+        <div class="desc">Turn scattered feedback into a clear picture of what's working and what isn't.</div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+
+    <div class="service-row" data-service="Google Review Analysis">
+      <span class="num">05</span>
+      <div>
+        <div class="title">Google Review Analysis</div>
+        <div class="desc">Understand what customers are publicly saying about you and where to improve.</div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+
+    <div class="service-row" data-service="Website and Landing Page Development">
+      <span class="num">06</span>
+      <div>
+        <div class="title">Website & Landing Page Development</div>
+        <div class="desc">A clean, fast page that represents your business properly online.</div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-logo"><span class="dot"></span>White Paper</div>
+    <div class="f-tag">Technology partner for businesses.</div>
+  </div>
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = "918300148985";
+
+  document.querySelectorAll('.service-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const service = row.getAttribute('data-service');
+      const select = document.getElementById('serviceSelect');
+      if (service && select) select.value = service;
+      document.getElementById('request').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+    row.style.cursor = 'pointer';
+  });
+
+  document.getElementById('wpForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const biz = document.getElementById('bizName').value.trim();
+    const owner = document.getElementById('ownerName').value.trim();
+    const service = document.getElementById('serviceSelect').value;
+    const note = document.getElementById('note').value.trim();
+
+    if(!biz || !owner || !service){
+      document.getElementById('formStatus').textContent = "Please fill in all required fields.";
+      return;
+    }
+
+    let message = `Hi White Paper, I'd like to request a service.%0A%0A`
+      + `Business: ${encodeURIComponent(biz)}%0A`
+      + `Name: ${encodeURIComponent(owner)}%0A`
+      + `Service: ${encodeURIComponent(service)}`;
+    if(note){ message += `%0ANote: ${encodeURIComponent(note)}`; }
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    document.getElementById('formStatus').textContent = "Opening WhatsApp...";
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
